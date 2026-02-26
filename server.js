@@ -13,6 +13,7 @@ app.use(express.static('public'))
 
 app.get('/', (req,res) => res.render('index' , {RoomId: uuidv4()}));
 
+
 app.get('/:room', (req,res) => res.render('class' , {RoomId: req.params.room}));
 
 io.on("connection", (socket) =>{
@@ -30,3 +31,7 @@ io.on("connection", (socket) =>{
 server.listen(port , ()=>{
   console.log("Server running on port : " + port);
 })
+
+app.get('/room/:room', (req,res) => {
+  res.render('class', { RoomId: req.params.room });
+});
